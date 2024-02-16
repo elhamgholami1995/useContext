@@ -1,25 +1,16 @@
 import { createContext, useState } from "react";
 import "./App.css";
 import Form from "./components/Form";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
+import { ToggleTheme } from "./components/ToggleTheme";
 
-export const ThemeCOntext = createContext();
 export default function MyApp() {
-  const [theme, setTheme] = useState("light");
   return (
-    <ThemeCOntext.Provider value={theme}>
+    <ThemeProvider>
       <div>
         <Form />
-        <label>
-          <input
-            type="checkbox"
-            checked={theme === "dark"}
-            onChange={(e) => {
-              setTheme(e.target.checked ? "dark" : "light");
-            }}
-          />
-          Use dark mode
-        </label>
+        <ToggleTheme />
       </div>
-    </ThemeCOntext.Provider>
+    </ThemeProvider>
   );
 }
